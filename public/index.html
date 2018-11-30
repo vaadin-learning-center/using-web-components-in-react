@@ -36,5 +36,9 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="%PUBLIC_URL%/vendor/webcomponents-bundle.js"></script>
+    <script>if (!window.customElements) { document.write("<!--"); }</script>
+    <script src="%PUBLIC_URL%/vendor/custom-elements-es5-adapter.js"></script>
+    <!--! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
   </body>
 </html>

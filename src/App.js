@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import '@vaadin/vaadin-button';
+import '@vaadin/vaadin-grid';
+import '@vaadin/vaadin-text-field';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="form">
+          <vaadin-text-field label="First Name" ref="firstName"> </vaadin-text-field>
+          <vaadin-text-field label="Last Name" ref="lastName"> </vaadin-text-field>
+          <vaadin-button ref="addButton"> Add </vaadin-button>
+        </div>
+        <vaadin-grid ref="grid">
+          <vaadin-grid-column path="firstName" header="First name">
+          </vaadin-grid-column>
+          <vaadin-grid-column path="lastName" header="Last name">
+          </vaadin-grid-column>
+        </vaadin-grid>
       </div>
     );
+  }
+
+  componentDidMount() {
+    let people = [];
+    this.refs.addButton.addEventListener('click', e => {
+      people = [
+        ...people,
+        {
+          firstName: this.refs.firstName.value,
+          lastName: this.refs.lastName.value
+        }
+      ];
+      this.refs.grid.items = people;
+      this.refs.firstName.value = '';
+      this.refs.lastName.value = '';
+    });
   }
 }
 
