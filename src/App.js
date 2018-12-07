@@ -5,24 +5,6 @@ import '@vaadin/vaadin-grid';
 import '@vaadin/vaadin-text-field';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="form">
-          <vaadin-text-field label="First Name" ref="firstName"> </vaadin-text-field>
-          <vaadin-text-field label="Last Name" ref="lastName"> </vaadin-text-field>
-          <vaadin-button ref="addButton"> Add </vaadin-button>
-        </div>
-        <vaadin-grid ref="grid">
-          <vaadin-grid-column path="firstName" header="First name">
-          </vaadin-grid-column>
-          <vaadin-grid-column path="lastName" header="Last name">
-          </vaadin-grid-column>
-        </vaadin-grid>
-      </div>
-    );
-  }
-
   componentDidMount() {
     let people = [];
     this.refs.addButton.addEventListener('click', e => {
@@ -37,6 +19,21 @@ class App extends Component {
       this.refs.firstName.value = '';
       this.refs.lastName.value = '';
     });
+  }
+  render() {
+    return (
+      <div className="App">
+        <div className="form">
+          <vaadin-text-field label="First Name" ref="firstName" />
+          <vaadin-text-field label="Last Name" ref="lastName" />
+          <vaadin-button ref="addButton"> Add </vaadin-button>
+        </div>
+        <vaadin-grid ref="grid">
+          <vaadin-grid-column path="firstName" header="First name" />
+          <vaadin-grid-column path="lastName" header="Last name" />
+        </vaadin-grid>
+      </div>
+    );
   }
 }
 
